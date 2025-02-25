@@ -3,34 +3,36 @@
 #include <cwctype> // для towlower и towupper
 #include <string>
 
+using namespace std;
+
 int main() {
     // Устанавливаем русскую локаль
-    std::locale::global(std::locale("ru_RU.utf8"));
-    std::wcin.imbue(std::locale());
-    std::wcout.imbue(std::locale());
+    locale::global(locale("ru_RU.utf8"));
+    wcin.imbue(locale());
+    wcout.imbue(locale());
 
-    std::wstring input;
+    wstring input;
     wchar_t choice;
 
     // Ввод строки
-    std::wcout << L"Введите строку: ";
-    std::getline(std::wcin, input);
+    wcout << L"Введите строку: ";
+    getline(wcin, input);
 
     // Ввод выбора регистра
-    std::wcout << L"Выберите регистр (L - нижний, U - верхний): ";
-    std::wcin >> choice;
+    wcout << L"Выберите регистр (L - нижний, U - верхний): ";
+    wcin >> choice;
 
     // Преобразование строки
     if (choice == L'L' || choice == L'l') {
-        for (wchar_t &ch : input) ch = std::towlower(ch);
-        std::wcout << L"Строка в нижнем регистре: " << input << std::endl;
+        for (wchar_t &ch : input) ch = towlower(ch);
+        wcout << L"Строка в нижнем регистре: " << input << endl;
     } 
     else if (choice == L'U' || choice == L'u') {
         for (wchar_t &ch : input) ch = std::towupper(ch);
-        std::wcout << L"Строка в верхнем регистре: " << input << std::endl;
+        wcout << L"Строка в верхнем регистре: " << input << endl;
     } 
     else {
-        std::wcout << L"Некорректный выбор регистра!" << std::endl;
+        wcout << L"Некорректный выбор регистра!" << endl;
         return 1;
     }
 
